@@ -4,10 +4,11 @@ from flask_cors import CORS
 from sqlalchemy import text
 from sqlalchemy.orm import joinedload
 from flask_migrate import Migrate
-from models import db, Admin, Motor, Images
+from models import  db, Admin, Motor, Images
 from flask_restful import Resource, Api
 from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, jwt_required
 from auth import Auth
+from flask_sqlalchemy import SQLAlchemy
 import os
 import psycopg2
 from dotenv import load_dotenv
@@ -16,7 +17,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 logging.basicConfig(level=logging.INFO)
@@ -24,6 +25,7 @@ logging.basicConfig(level=logging.INFO)
 logging.info("Starting application setup")
 
 CORS(app, resources={r"/*": {"origins": "*"}})
+
 
 migrate = Migrate(app, db)
 

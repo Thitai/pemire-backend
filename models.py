@@ -5,6 +5,7 @@ from sqlalchemy_serializer import SerializerMixin
 
 db = SQLAlchemy()
 
+
 class Admin(db.Model, SerializerMixin):
     __tablename__ = 'admins'
 
