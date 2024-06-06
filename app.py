@@ -4,10 +4,10 @@ from flask_cors import CORS
 from sqlalchemy import text
 from sqlalchemy.orm import joinedload
 from flask_migrate import Migrate
-from server.models import db, Admin, Motor, Images
+from models import db, Admin, Motor, Images
 from flask_restful import Resource, Api
 from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, jwt_required
-from server.auth import Auth
+from auth import Auth
 import os
 import psycopg2
 from dotenv import load_dotenv
