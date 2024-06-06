@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Changing working directory to 'server'..."
+cd server || exit 1
