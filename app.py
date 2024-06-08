@@ -12,14 +12,13 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 import psycopg2
 from dotenv import load_dotenv
+from config import Config
 
 load_dotenv()
 
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY')
-DATABASE_URI = os.environ.get['DATABASE_URL']
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI.replace('postgres://', 'postgresql+psycopg2://')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app = Flask(__name__)
+app.config.from_object(Config)
 
 logging.basicConfig(level=logging.INFO)
 
