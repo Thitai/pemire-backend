@@ -7,3 +7,4 @@ class Config:
         DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql+psycopg2://')
     SQLALCHEMY_DATABASE_URI = DATABASE_URL
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+# DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite3:///app.db')
