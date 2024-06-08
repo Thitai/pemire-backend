@@ -17,7 +17,8 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+DATABASE_URI = os.environ.get['DATABASE_URI']
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI.replace('postgres://', 'postgresql+psycopg2://')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 logging.basicConfig(level=logging.INFO)
