@@ -25,8 +25,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['motor_id'], ['motors.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    with op.batch_alter_table('motors', schema=None) as batch_op:
-        batch_op.drop_column('images')
+    op.execute("ALTER TABLE motors ALTER COLUMN images TYPE JSON USING images::json")
 
     # ### end Alembic commands ###
 
