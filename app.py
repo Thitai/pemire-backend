@@ -62,20 +62,35 @@ class Motors(Resource):
         image = data.get('image')
         type = data.get('type')
         description = data.get('description')
-        price= data.get('price')
-        model=  data.get('model')
-        mileage =  data.get('mileage')
-        engine_size= data.get('engine_size')
-        fuel_type= data.get('fuel_type')
-        images= data.get('images')
-        
-        
+        price = data.get('price')
+        model = data.get('model')
+        mileage = data.get('mileage')
+        engine_size = data.get('engine_size')
+        fuel_type = data.get('fuel_type')
+        images = data.get('images', [])
 
-        motor = Motor(name=name, image=image, type=type , description=description , price=price, model=model,images=images , mileage=mileage, engine_size=engine_size, fuel_type=fuel_type)
+        motor = Motor(
+            name=name,
+            image=image,
+            type=type,
+            description=description,
+            price=price,
+            model=model,
+            mileage=mileage,
+            engine_size=engine_size,
+            fuel_type=fuel_type
+        )
+
+        # Create Images instances and associate them with the motor
+        for img_url in images:
+            img = Images(image_url=img_url)
+            motor.images.append(img)
+
         db.session.add(motor)
         db.session.commit()
 
         return {"message": "Motor added successfully"}, 201
+
 
 
 @app.route('/motors/<int:id>', methods=['GET'])
