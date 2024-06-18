@@ -25,7 +25,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['motor_id'], ['motors.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    op.execute("ALTER TABLE motors ALTER COLUMN images TYPE JSON USING images::json")
+  op.execute("ALTER TABLE motors ALTER COLUMN images TYPE JSON USING images::json")
 
     # ### end Alembic commands ###
 
