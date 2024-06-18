@@ -36,7 +36,7 @@ class Motor(db.Model, SerializerMixin):
     description = db.Column(db.String)
     price = db.Column(db.String)
     model = db.Column(db.String, nullable=False)
-    engine_number = db.Column(db.String)
+    make = db.Column(db.String)
     mileage = db.Column(db.String, nullable=False)
     engine_size = db.Column(db.String)
     fuel_type = db.Column(db.String)
