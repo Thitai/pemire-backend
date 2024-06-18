@@ -24,7 +24,7 @@ logging.basicConfig(level=logging.INFO)
 
 logging.info("Starting application setup")
 
-CORS(app, resources={r"/": {"origins": "https://www.pemire.co.ke"}})
+CORS(app, resources={r"/*": {"origins": "https://www.pemire.co.ke"}})
 
 
 migrate = Migrate(app, db)
